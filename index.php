@@ -62,7 +62,13 @@
 			<?php } ?>
 		</ol></li>
 		<li>Le film "Gravity" est classé
-			
+			<?php 
+				foreach($top as $value):
+					if($value['im:name']['label'] === 'Gravity'){
+						echo array_search($value, $top)+1;
+					}
+				endforeach;
+			?>
 		</li>
 		<li></li>
 		<li></li>
