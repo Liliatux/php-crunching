@@ -70,8 +70,27 @@
 				endforeach;
 			?>
 		</li>
-		<li></li>
-		<li></li>
+		<li>Le réalisateur du film "The LEGO Movie" est: 
+			<?php foreach ($top as $value):
+				$lego = explode('-', $value['title']['label']);
+				$title = $lego[0];
+				$autor = $lego[1];
+				if($value['im:name']['label'] === 'The LEGO Movie'){
+					echo $autor;
+				}
+			endforeach; ?>
+		</li>
+		<li>Il y a eu 
+		<?php 
+			$year= 0;
+			foreach($top as $value):
+
+				if($value['im:releaseDate']['label'] < 2000){
+					$year++;
+				}
+			endforeach;
+			echo $year;
+		?> avant 2000</li>
 		<li></li>
 		<li></li>
 		<li></li>
