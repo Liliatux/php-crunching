@@ -72,11 +72,8 @@
 		</li>
 		<li>Le réalisateur du film "The LEGO Movie" est: 
 			<?php foreach ($top as $value):
-				$lego = explode('-', $value['title']['label']);
-				$title = $lego[0];
-				$autor = $lego[1];
 				if($value['im:name']['label'] === 'The LEGO Movie'){
-					echo $autor;
+					echo $value['im:artist']['label'];
 				}
 			endforeach; ?>
 		</li>
@@ -84,15 +81,26 @@
 		<?php 
 			$year= 0;
 			foreach($top as $value):
-
 				if($value['im:releaseDate']['label'] < 2000){
 					$year++;
 				}
 			endforeach;
 			echo $year;
 		?> avant 2000</li>
-		<li></li>
-		<li></li>
+		<li><?php 
+			foreach($top as $value):
+				$date = $value['im:releaseDate']['label'];
+				$film = $value['im:name']['label'];
+				$tableDates[$date] = $film;
+			endforeach;
+			ksort($tableDates); ?>
+			Le films le plus récent est <?= end($tableDates);?> et le plus vieux est <?= reset($tableDates); ?>
+		</li>
+		<li><?php
+			foreach($top as $value):
+				var_dump($value['category']['attributes']['label']);
+			endforeach;	
+		?></li>
 		<li></li>
 		<li></li>
 		<li></li>
