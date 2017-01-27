@@ -96,12 +96,30 @@
 			ksort($tableDates); ?>
 			Le films le plus récent est <?= end($tableDates);?> et le plus vieux est <?= reset($tableDates); ?>
 		</li>
-		<li><?php
+		<li>La catégorie de films la plus représentée est <?php
+			$arrayCategory = [];
 			foreach($top as $value):
-				var_dump($value['category']['attributes']['label']);
-			endforeach;	
+				$nameCategory = $value['category']['attributes']['label'];
+				array_push($arrayCategory, $nameCategory);
+			endforeach;
+			$sameCategories = array_count_values($arrayCategory);
+			//trie les valeurs de façon croissante
+			asort($sameCategories);
+			$bestCategorie = end($sameCategories);
+			echo array_search($bestCategorie, $sameCategories);
 		?></li>
-		<li></li>
+		<li>Le réalisateur le plus présent dans le top 100 est 
+		<?php
+			$arrayRealisator = [];
+			foreach ($top as $value):
+				$realisator = $value['im:artist']['label'];
+				array_push($arrayRealisator, $realisator);
+			endforeach;
+			$sameRealisator = array_count_values($arrayRealisator);
+			asort($sameRealisator);
+			$bestRealisator = end($sameRealisator);
+			echo array_search($bestRealisator, $sameRealisator);
+		?></li>
 		<li></li>
 		<li></li>
 		<li></li>
