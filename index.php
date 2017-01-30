@@ -135,7 +135,19 @@
 			}
 			echo $rentalSum.'$';
 		?></li>
-		<li></li>
+		<li>Le mois ayant vu le plus de sorties au cinema est 
+		<?php
+			$arrayMonth = [];
+			foreach($top as $film):
+				$date = $film['im:releaseDate']['attributes']['label'];
+				$explodeDate = explode(" ", $date);
+				array_push($arrayMonth, $explodeDate[0]);
+			endforeach;
+			$sameMonth = array_count_values($arrayMonth);
+			asort($sameMonth);
+			$bestMonth = end($sameMonth);
+			echo array_search($bestMonth, $sameMonth);
+		?></li>
 		<li></li>
 	</ol>
 </body>
