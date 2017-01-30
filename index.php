@@ -120,7 +120,21 @@
 			$bestRealisator = end($sameRealisator);
 			echo array_search($bestRealisator, $sameRealisator);
 		?></li>
-		<li></li>
+		<li>Acheter le top10 sur iTunes coûterait:
+		<?php
+			for($film = 0; $film < 10; $film ++){
+				$price = $top[$film]['im:price']['attributes']['amount'];
+				$priceSum = $priceSum + $price;
+			}
+			echo $priceSum.'$';
+		?>
+		<?php 
+			for($film = 0; $film < 10; $film++){
+				$rental = $top[$film]['im:rentalPrice']['attributes']['amount'];
+				$rentalSum = $rental + $rentalSum;
+			}
+			echo $rentalSum.'$';
+		?></li>
 		<li></li>
 		<li></li>
 	</ol>
